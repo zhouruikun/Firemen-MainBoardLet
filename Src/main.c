@@ -51,7 +51,7 @@
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 uint8_t UartTTLTxBuff[50];
-uint8_t UartTTLRxBuff[50];
+uint8_t UartTTLRxBuff[200];
 uint8_t UartWIRTxBuff[50];
 uint8_t UartWIRRxBuff[50];
 uint8_t ttlRecFlag = 0;
@@ -121,7 +121,7 @@ int main(void)
 			ttlRecFlag=0;
 			if((UartTTLRxBuff[0]&0xC0) == 0XC0)
 				{
-					HAL_UART_Receive(&huart2,	&UartTTLRxBuff[1],49,40);
+					HAL_UART_Receive(&huart2,	&UartTTLRxBuff[1],200,200);
 					setMode(3);
 					HAL_UART_Transmit_IT(&huart1,UartTTLRxBuff,huart2.RxXferSize - huart2.RxXferCount);
 					HAL_UART_Receive_IT(&huart2,	UartTTLRxBuff,1);
@@ -129,7 +129,7 @@ int main(void)
 				}
 					else
 				{
-					HAL_UART_Receive(&huart2,	&UartTTLRxBuff[1],49,40);
+					HAL_UART_Receive(&huart2,	&UartTTLRxBuff[1],200,200);
 					HAL_UART_Transmit_IT(&huart1,UartTTLRxBuff,huart2.RxXferSize - huart2.RxXferCount);
 					HAL_UART_Receive_IT(&huart2,	UartTTLRxBuff,1);
 				}
